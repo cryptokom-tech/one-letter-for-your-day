@@ -35,7 +35,12 @@ directory; exits non-zero unless the written file is exactly "N".
 import os
 import sys
 
-LETTER = "N"
+# The day in one word: NOCTURNAL — a day lived after dark. Vivid and
+# specific, surprising ("my day was night"), and true: this entry was
+# built at 04:40 WIB, the very hour it describes. The letter is the
+# word's natural initial, not the brief's obvious Z/A/F.
+DAY_WORD = "NOCTURNAL"
+LETTER = DAY_WORD[0]  # "N"
 
 
 def main() -> int:
@@ -48,7 +53,7 @@ def main() -> int:
         fh.write(LETTER)
     with open(path, "rb") as fh:
         data = fh.read()
-    if data != b"N":
+    if data != LETTER.encode():
         print("entry must be exactly the single letter N", file=sys.stderr)
         return 1
     return 0
